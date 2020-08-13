@@ -1,0 +1,9 @@
+.predictions {
+  display: flex;
+  flex-direction: column;
+}
+
+.prediction {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}

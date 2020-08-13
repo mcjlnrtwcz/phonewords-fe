@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+}
+
+.phone {
+  padding-right: 4rem;
+}
+
+.predictions {
+  padding-top: 1rem;
+}
