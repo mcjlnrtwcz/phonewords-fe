@@ -4,6 +4,9 @@
 
 .phone {
   padding-right: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .predictions {

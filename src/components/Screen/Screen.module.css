@@ -1,0 +1,23 @@
+.screen {
+  font-size: 4rem;
+  line-height: 4.5rem;
+  height: 4.5rem;
+  width: 20rem;
+  padding: 1rem;
+  background-color: #eee;
+  border-radius: 1rem;
+  margin-bottom: 3rem;
+
+  /* Necessary for ellipsis to work */
+  display: flex;
+  min-width: 0;
+}
+
+.content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  direction: rtl;
+  text-align: left;
+  margin-right: 1rem;
+}

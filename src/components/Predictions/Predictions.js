@@ -13,7 +13,7 @@ function Predictions() {
   return (
     <div className={styles.predictions}>
       {example.map((prediction) => (
-        <span className={styles.prediction}>{prediction}</span>
+        <span key={prediction} className={styles.prediction}>{prediction}</span>
       ))}
     </div>
   );
