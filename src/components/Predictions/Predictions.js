@@ -4,21 +4,24 @@ import PropTypes from "prop-types";
 import styles from "components/Predictions/Predictions.module.css";
 
 /**
- * Beautiful component.
+ * Display list of word predictions
  * @param {object} props
- * @param {bool} props.isBeautiful does it look good?
+ * @param {bool} props.predictions array of word predictions
  */
-function Predictions() {
-  const example = ["AB", "BC", "CD", "AA", "BB"];
+function Predictions({ predictions }) {
   return (
     <div className={styles.predictions}>
-      {example.map((prediction) => (
-        <span key={prediction} className={styles.prediction}>{prediction}</span>
+      {predictions.map((prediction) => (
+        <span key={prediction} className={styles.prediction}>
+          {prediction}
+        </span>
       ))}
     </div>
   );
 }
 
-Predictions.propTypes = {};
+Predictions.propTypes = {
+  predictions: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default Predictions;
