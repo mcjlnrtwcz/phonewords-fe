@@ -8,7 +8,7 @@ import usePredictions from "hooks/usePredictions";
 
 function App() {
   const [input, setInput] = useState("");
-  const predictions = usePredictions(input);
+  const { predictions, isLoading } = usePredictions(input);
 
   return (
     <div className={styles.app}>
@@ -20,8 +20,16 @@ function App() {
           onClear={() => setInput("")}
         />
       </div>
-      <div className={styles.predictions}>
-        <Predictions predictions={predictions} />
+      <div
+        className={`${styles.predictions} ${isLoading ? styles.loading : ""}`}
+      >
+        {predictions.length === 0 && input.length > 0 ? (
+          <span className={styles.noPredictions}>
+            Sorry, can&apos;t predict the word
+          </span>
+        ) : (
+          <Predictions predictions={predictions} />
+        )}
       </div>
     </div>
   );

@@ -10,6 +10,16 @@
 
 .predictions {
   padding-top: 1rem;
+  padding-left: 3rem;
   width: 20rem;
   height: 30rem;
+  transition: opacity 0.25s;
+}
+
+.loading {
+  opacity: 0.25;
+}
+
+.noPredictions {
+  color: #f1609d;
 }
