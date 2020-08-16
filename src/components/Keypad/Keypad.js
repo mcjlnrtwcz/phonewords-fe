@@ -24,6 +24,7 @@ function Keypad({ onNumber, onDelete, onClear }) {
   ];
   const buttons = buttonLabels.map(([label, smallLabel]) => (
     <Button
+      key={label}
       label={label}
       smallLabel={smallLabel}
       onPress={() => onNumber(label)}

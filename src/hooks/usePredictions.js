@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import useAPI from "hooks/useAPI";
+import useDebounce from "hooks/useDebounce";
 
 const getPredictionsUrl = (params) =>
   `http://localhost:3001/predictions/${params.number}`;
@@ -8,15 +9,16 @@ const getPredictionsUrl = (params) =>
 function usePredictions(input) {
   const [predictions, setPredictions] = useState([]);
   const { makeRequest, response } = useAPI(getPredictionsUrl);
+  const debounce = useDebounce(500);
 
   // Get new predictions when input changes
   useEffect(() => {
     if (input) {
-      makeRequest({ params: { number: input } });
+      debounce(() => makeRequest({ params: { number: input } }));
     } else {
       setPredictions([]);
     }
-  }, [makeRequest, input]);
+  }, [debounce, makeRequest, input]);
   // Update predictions on successful response
   useEffect(() => {
     if (response) {
