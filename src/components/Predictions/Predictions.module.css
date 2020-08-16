@@ -1,7 +1,6 @@
 .predictions {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .prediction {
