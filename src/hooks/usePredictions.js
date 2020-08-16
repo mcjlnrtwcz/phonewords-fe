@@ -9,7 +9,7 @@ const getPredictionsUrl = (params) =>
 function usePredictions(input) {
   const [predictions, setPredictions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { makeRequest, response, isLoading: isAPILoading } = useAPI(
+  const { makeRequest, response, isLoading: isAPILoading, error } = useAPI(
     getPredictionsUrl
   );
   const debounce = useDebounce(500);
@@ -34,7 +34,7 @@ function usePredictions(input) {
     }
   }, [response]);
 
-  return { predictions, isLoading };
+  return { predictions, isLoading, error };
 }
 
 export default usePredictions;

@@ -8,7 +8,22 @@ import usePredictions from "hooks/usePredictions";
 
 function App() {
   const [input, setInput] = useState("");
-  const { predictions, isLoading } = usePredictions(input);
+  const { predictions, isLoading, error } = usePredictions(input);
+
+  let resultComponent;
+  if (error) {
+    resultComponent = (
+      <span className={styles.warning}>
+        Can&apos;t fetch predictions - API error
+      </span>
+    );
+  } else if (predictions.length === 0 && input.length > 0) {
+    resultComponent = (
+      <span className={styles.warning}>Sorry, can&apos;t predict the word</span>
+    );
+  } else {
+    resultComponent = <Predictions predictions={predictions} />;
+  }
 
   return (
     <div className={styles.app}>
@@ -22,14 +37,9 @@ function App() {
       </div>
       <div
         className={`${styles.predictions} ${isLoading ? styles.loading : ""}`}
+        data-testid="predictions"
       >
-        {predictions.length === 0 && input.length > 0 ? (
-          <span className={styles.noPredictions}>
-            Sorry, can&apos;t predict the word
-          </span>
-        ) : (
-          <Predictions predictions={predictions} />
-        )}
+        {resultComponent}
       </div>
     </div>
   );
