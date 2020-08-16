@@ -5,28 +5,49 @@ import styles from "components/Keypad/Keypad.module.css";
 import Button from "components/Button/Button";
 
 /**
- * Keypad with 9 buttons (1-9) including letters
+ * Keypad with 9 buttons (1-9) including letters plus delete and clear button
  * @param {object} props
- * @param {bool} props.onPress callback executed when button is pressed, number passed as an argument
+ * @param {bool} props.onNumber callback executed when number button is pressed (number passed as an argument)
+ * @param {bool} props.onDelete callback executed when delete button is pressed
+ * @param {bool} props.onClear callback executed when clear button is pressed
  */
-function Keypad({ onPress }) {
+function Keypad({ onNumber, onDelete, onClear }) {
+  const buttonLabels = [
+    ["2", "ABC"],
+    ["3", "DEF"],
+    ["4", "GHI"],
+    ["5", "JKL"],
+    ["6", "MNO"],
+    ["7", "PQRS"],
+    ["8", "TUV"],
+    ["9", "WXYZ"],
+  ];
+  const buttons = buttonLabels.map(([label, smallLabel]) => (
+    <Button
+      label={label}
+      smallLabel={smallLabel}
+      onPress={() => onNumber(label)}
+    />
+  ));
+
   return (
     <div className={styles.keypad}>
-      <Button number="1" />
-      <Button number="2" label="ABC" onPress={onPress} />
-      <Button number="3" label="DEF" onPress={onPress} />
-      <Button number="4" label="GHI" onPress={onPress} />
-      <Button number="5" label="JKL" onPress={onPress} />
-      <Button number="6" label="MNO" onPress={onPress} />
-      <Button number="7" label="PQRS" onPress={onPress} />
-      <Button number="8" label="TUV" onPress={onPress} />
-      <Button number="9" label="WXYZ" onPress={onPress} />
+      <Button label="1" />
+      {buttons}
+      <div className={styles.secondColumn}>
+        <Button type="yellow" smallLabel="DEL" onPress={onDelete} />
+      </div>
+      <div className={styles.thirdColumn}>
+        <Button type="red" smallLabel="CLR" onPress={onClear} />
+      </div>
     </div>
   );
 }
 
 Keypad.propTypes = {
-  onPress: PropTypes.func.isRequired,
+  onNumber: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onClear: PropTypes.func.isRequired,
 };
 
 export default Keypad;

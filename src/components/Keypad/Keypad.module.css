@@ -4,3 +4,11 @@
   gap: 1.5rem;
   justify-items: center;
 }
+
+.secondColumn {
+  grid-column-start: 2;
+}
+
+.thirdColumn {
+  grid-column-start: 3;
+}

@@ -1,5 +1,4 @@
 .button {
-  background-color: #ddd;
   width: 5rem;
   height: 5rem;
   border: 0;
@@ -10,17 +9,44 @@
   justify-content: center;
 }
 
-.button:active {
+.grey {
+  composes: button;
+  background-color: #ddd;
+}
+
+.grey:active {
   background-color: #f7bbd5;
 }
 
-.number {
+.red {
+  composes: button;
+  background-color: transparent;
+  border: 1px solid #ff2f14;
+  color: #ff2f14;
+}
+
+.red:active {
+  background-color: #ffe8e6;
+}
+
+.yellow {
+  composes: button;
+  background-color: transparent;
+  border: 1px solid #f89b08;
+  color: #f89b08;
+}
+
+.yellow:active {
+  background-color: #fef3e0;
+}
+
+.label {
   margin: 0;
   font-size: 3rem;
   line-height: 3rem;
 }
 
-.label {
+.smallLabel {
   margin: 0;
   font-size: 0.75rem;
 }

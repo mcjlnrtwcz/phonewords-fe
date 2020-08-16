@@ -13,6 +13,8 @@ function usePredictions(input) {
   useEffect(() => {
     if (input) {
       makeRequest({ params: { number: input } });
+    } else {
+      setPredictions([]);
     }
   }, [makeRequest, input]);
   // Update predictions on successful response

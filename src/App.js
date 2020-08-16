@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 
 import styles from "App.module.css";
 import Screen from "components/Screen/Screen";
@@ -9,18 +9,16 @@ import usePredictions from "hooks/usePredictions";
 function App() {
   const [input, setInput] = useState("");
   const predictions = usePredictions(input);
-  const appendInput = useCallback(
-    (newValue) => {
-      setInput((previousValue) => `${previousValue}${newValue}`);
-    },
-    [setInput]
-  );
 
   return (
     <div className={styles.app}>
       <div className={styles.phone}>
         <Screen content={input} />
-        <Keypad onPress={appendInput} />
+        <Keypad
+          onNumber={(number) => setInput((prev) => `${prev}${number}`)}
+          onDelete={() => setInput((prev) => prev.slice(0, prev.length - 1))}
+          onClear={() => setInput("")}
+        />
       </div>
       <div className={styles.predictions}>
         <Predictions predictions={predictions} />
